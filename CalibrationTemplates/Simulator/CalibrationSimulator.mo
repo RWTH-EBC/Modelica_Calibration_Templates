@@ -6,14 +6,16 @@ model CalibrationSimulator
   parameter Integer nTargetsSimedTS(min=1) "Number of simulated target time series" annotation(Dialog(group="Number in- and outputs"));
   parameter Integer nInputsMeasTS(min=1) "Number of measured input time series" annotation(Dialog(group="Number in- and outputs"));
 
-  InterfaceRouter.PreProcessor preProcessor(final nTargetsMeasTS=nTargetsMeasTS, final nInputsMeasTS=nInputsMeasTS)
-                                            annotation (Placement(transformation(extent={{-68,-80},{-52,80}})));
+  replaceable
+  InterfaceRouter.PreProcessor preProcessor(nTargetsMeasTS=nTargetsMeasTS, nInputsMeasTS=nInputsMeasTS) constrainedby InterfaceRouter.PreProcessor(nTargetsMeasTS=nTargetsMeasTS, nInputsMeasTS=nInputsMeasTS)
+                                            annotation (Placement(transformation(extent={{-68,-80},{-52,80}})), choicesAllMatching=true);
   replaceable Container.ModelContainer modelContainer(
     final nTargetsMeasTS=nTargetsMeasTS,
     final nTargetsSimedTS=nTargetsSimedTS,
     final nInputsMeasTS=nInputsMeasTS)                annotation (choicesAllMatching=true, Placement(transformation(extent={{-30,2},{30,68}})));
-  InterfaceRouter.PostProcessor postProcessor(final nTargetsMeasTS=nTargetsMeasTS, final nTargetsSimedTS=nTargetsSimedTS)
-                                              annotation (Placement(transformation(extent={{52,-80},{70,80}})));
+  replaceable
+  InterfaceRouter.PostProcessor postProcessor(nTargetsMeasTS=nTargetsMeasTS, nTargetsSimedTS=nTargetsSimedTS) constrainedby InterfaceRouter.PostProcessor(nTargetsMeasTS=nTargetsMeasTS, nTargetsSimedTS=nTargetsSimedTS)
+                                              annotation (Placement(transformation(extent={{52,-80},{70,80}})), choicesAllMatching=true);
   Interfaces.RealVectorOutputs outTargetsMeas[nTargetsMeasTS] annotation (Placement(transformation(extent={{88,-86},{114,-34}})));
   Interfaces.RealVectorOutputs outTargetsSimed[nTargetsSimedTS] annotation (Placement(transformation(extent={{88,34},{114,86}})));
 equation
