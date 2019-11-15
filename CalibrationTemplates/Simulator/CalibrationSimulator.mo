@@ -6,6 +6,15 @@ model CalibrationSimulator
   parameter Integer nTargetsSimedTS(min=1) "Number of simulated target time series" annotation(Dialog(group="Number in- and outputs"));
   parameter Integer nInputsMeasTS(min=1) "Number of measured input time series" annotation(Dialog(group="Number in- and outputs"));
 
+  /////////////////////////////////
+  // TUNER PARAMETERS /////////////
+  /////////////////////////////////
+  // DO NOT FORGET: ///////////////
+  // set all parameters: //////////
+  // annotation(Evaluate=false); //
+  /////////////////////////////////
+
+
   replaceable
   InterfaceRouter.PreProcessor preProcessor(nTargetsMeasTS=nTargetsMeasTS, nInputsMeasTS=nInputsMeasTS) constrainedby InterfaceRouter.PreProcessor(nTargetsMeasTS=nTargetsMeasTS, nInputsMeasTS=nInputsMeasTS)
                                             annotation (Placement(transformation(extent={{-68,-80},{-52,80}})), choicesAllMatching=true);
@@ -33,5 +42,13 @@ equation
           fillPattern=FillPattern.Solid,
           textString="Tuner Parameters
 go inside the
-source code")}));
+source code")}), Documentation(info="<html>
+<p><span style=\"font-family: Courier New;\">  /////////////////////////////////</span></p>
+<p><span style=\"font-family: Courier New;\">  // TUNER PARAMETERS /////////////</span></p>
+<p><span style=\"font-family: Courier New;\">  /////////////////////////////////</span></p>
+<p><span style=\"font-family: Courier New;\">  // DO NOT FORGET: ///////////////</span></p>
+<p><span style=\"font-family: Courier New;\">  // set all parameters: //////////</span></p>
+<p><span style=\"font-family: Courier New;\">  // annotation(Evaluate=false); //</span></p>
+<p><span style=\"font-family: Courier New;\">  /////////////////////////////////</span></p>
+</html>"));
 end CalibrationSimulator;
