@@ -1,2 +1,1 @@
-# calibration_templates_modelica
-
+# MoCaTe - Modelica Calibration Template
