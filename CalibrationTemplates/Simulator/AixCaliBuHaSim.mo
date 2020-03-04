@@ -11,8 +11,8 @@ partial model AixCaliBuHaSim
       startIndex=Modelica.Utilities.Strings.length("#time_in_s") + 2,
       nStringArray=size(inputNames, 1)) annotation(Dialog(group="Advanced Settings"));
 
-  replaceable Container.Internal.ModelContainerRouteThrough
-                                       modelContainer(final use_aixcalibuha=true)                                annotation (choicesAllMatching=true, Placement(transformation(extent={{-32,-28},
+  replaceable Container.ModelContainer modelContainer(final use_aixcalibuha=true) constrainedby
+    Container.ModelContainer                                                                                                      annotation (choicesAllMatching=true, Placement(transformation(extent={{-32,-28},
             {28,34}})));
 
   Modelica.Blocks.Sources.CombiTimeTable tableInputsMeas(
