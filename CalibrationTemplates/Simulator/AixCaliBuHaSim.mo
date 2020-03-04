@@ -11,10 +11,12 @@ partial model AixCaliBuHaSim
       nStringArray=size(inputNames, 1)) annotation(Dialog(group="Advanced Settings"));
 
   replaceable CalibrationTemplates.Container.ModelContainer modelContainer(final use_aixcalibuha=true) constrainedby
-    CalibrationTemplates.Container.ModelContainer                                                                                      annotation (choicesAllMatching=true, Placement(transformation(extent={{-28,-24}, {28,32}})));
-  replaceable Database.TunerParameterBaseDataDefinition
-    tunerParameters constrainedby Database.TunerParameterBaseDataDefinition
-    annotation (choicesAllMatching=true, Placement(transformation(extent={{-96,64},
+    CalibrationTemplates.Container.ModelContainer                                                                                      annotation (choicesAllMatching=true, Placement(transformation(extent={{-28,-24},
+            {28,32}})));
+  replaceable parameter CalibrationTemplates.Database.TunerParameterBaseDataDefinition
+    tunerParameters constrainedby
+    CalibrationTemplates.Database.TunerParameterBaseDataDefinition
+    annotation (Evaluate=false, choicesAllMatching=true, Placement(transformation(extent={{-96,64},
             {-64,96}})));
   Modelica.Blocks.Sources.CombiTimeTable tableInputsMeas(
     tableOnFile=true,
@@ -23,6 +25,8 @@ partial model AixCaliBuHaSim
     columns=2:nInputsMeasTS + 1,
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint) annotation (Placement(transformation(extent={{-100,6},
             {-72,34}})));
+ Interfaces.RealVectorOutputs outTargetsSimed[nTargetsSimedTS] "Have outputs of model on top-level"
+    annotation (Placement(transformation(extent={{82,-16},{122,24}})));
 protected
   parameter Integer nTargetsSimedTS=modelContainer.nTargetsSimedTS "Number of simulated target time series";
   parameter Integer nInputsMeasTS=modelContainer.nInputsMeasTS "Number of measured input time series";
@@ -30,15 +34,17 @@ protected
     Modelica.Utilities.Files.fullPathName(fNameInputsMeas), lineWithHeaders);
   parameter String inputNames[:]=modelContainer.inputNames "";
 
+
+equation
+  connect(tableInputsMeas.y, modelContainer.inInputsMeas) annotation (Line(
+        points={{-70.6,20},{-68,20},{-68,20.8},{-27.72,20.8}},
+                                                            color={0,0,127}));
 initial equation
   for i in 1:size(inputNames, 1) loop
     assert(Modelica.Utilities.Strings.isEqual(inputNames[i], headersInputsMeas[i]), "Names of measured inputs defined in Modelica must equal headers in read in file.\n
       But names are "+inputNames[i]+" in Modelica and "+headersInputsMeas[i]+" in the table file.", AssertionLevel.error);
   end for;
 equation
-
-  connect(tableInputsMeas.y, modelContainer.inInputsMeas) annotation (Line(
-        points={{-70.6,20},{-68,20},{-68,20.8},{-27.72,20.8}},
-                                                            color={0,0,127}));
-
+  connect(modelContainer.outTargetsSimed, outTargetsSimed)
+    annotation (Line(points={{28.28,4},{102,4}},            color={0,0,127}));
 end AixCaliBuHaSim;
