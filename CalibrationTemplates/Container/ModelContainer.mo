@@ -1,11 +1,13 @@
 within CalibrationTemplates.Container;
 partial model ModelContainer
 
-  parameter Boolean use_aixcalibuha=False "Whether the models will be used via the AixCaliBuHa-Framework" annotation (choices(checkBox=true));
+  parameter Boolean use_aixcalibuha=false "Whether the models will be used via the AixCaliBuHa-Framework" annotation (choices(checkBox=true));
+  parameter String inputNames[:] = {"dummy_variable"} "Names of variables you use as input. The order has to match the order of the connections you draw in this model";
 
-  parameter Integer nInputsMeasTS "Number of measured input time series" annotation(Dialog(group="Number in- and outputs", connectorSizing=true));
-  parameter Integer nTargetsMeasTS "Number of measured target time series" annotation(Dialog(group="Number in- and outputs", connectorSizing=true, enable=not use_aixcalibuha));
-  parameter Integer nTargetsSimedTS "Number of simulated target time series" annotation(Dialog(group="Number in- and outputs", connectorSizing=true));
+
+  parameter Integer nInputsMeasTS(min=1) "Number of measured input time series" annotation(Dialog(group="Number in- and outputs", connectorSizing=true));
+  parameter Integer nTargetsMeasTS(min=1) if not use_aixcalibuha "Number of measured target time series" annotation(Dialog(group="Number in- and outputs", connectorSizing=true, enable=not use_aixcalibuha));
+  parameter Integer nTargetsSimedTS(min=1) "Number of simulated target time series" annotation(Dialog(group="Number in- and outputs", connectorSizing=true));
 
   Interfaces.RealVectorInputs inTargetsMeas[nTargetsMeasTS] if not use_aixcalibuha annotation (Placement(transformation(extent={{-112,-86},{-86,-34}})));
   Interfaces.RealVectorInputs inInputsMeas[nInputsMeasTS] annotation (Placement(transformation(extent={{-112,34},{-86,86}})));
