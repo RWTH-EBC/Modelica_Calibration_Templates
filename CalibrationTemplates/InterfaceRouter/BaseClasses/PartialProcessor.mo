@@ -1,15 +1,20 @@
 within CalibrationTemplates.InterfaceRouter.BaseClasses;
 partial model PartialProcessor
 
-  parameter Integer nTargetsMeasTS(min=1) "Number of measured target time series";
   parameter Boolean justPassThrough=true "Set to false if calculations should be performed" annotation(Evaluate = true);
 
-  Interfaces.CalBusTargetMeas inTargetsMeas
+  Interfaces.CalBusTargetMeas calBusTargetsMeasIn
     annotation (Placement(transformation(extent={{-32,-86},{-6,-34}})));
-  Interfaces.CalBusTargetMeas outTargetsMeas
+  Interfaces.CalBusTargetMeas calBusTargetsMeasOut
     annotation (Placement(transformation(extent={{8,-86},{34,-34}})));
 equation
-
+  if justPassThrough then
+    connect(calBusTargetsMeasIn, calBusTargetsMeasOut) annotation (Line(
+        visible=justPassThrough,
+        points={{-19,-60},{-1.5,-60},{-1.5,-60},{21,-60}},
+        color={0,0,127},
+        thickness=1));
+  end if;
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-20,-100},{20,100}}), graphics={
         Rectangle(
           extent={{-20,100},{20,-100}},

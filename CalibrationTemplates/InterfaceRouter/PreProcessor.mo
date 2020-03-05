@@ -2,22 +2,16 @@ within CalibrationTemplates.InterfaceRouter;
 model PreProcessor
   extends BaseClasses.PartialProcessor;
 
-  parameter Integer nInputsMeasTS(min=1) "Number of measured input time series";
-  Interfaces.CalBusInput inInputsMeas
+  Interfaces.CalBusInput calBusInputsIn
     annotation (Placement(transformation(extent={{-32,34},{-6,86}})));
-  Interfaces.CalBusInput outInputsMeas
+  Interfaces.CalBusInput calBusInputsOut
     annotation (Placement(transformation(extent={{8,34},{34,86}})));
 equation
 
   if justPassThrough then
-    connect(inInputsMeas, outInputsMeas) annotation (Line(
+    connect(calBusInputsIn, calBusInputsOut) annotation (Line(
         visible=justPassThrough,
         points={{-19,60},{21,60}},
-        color={0,0,127},
-        thickness=1));
-    connect(inTargetsMeas, outTargetsMeas) annotation (Line(
-        visible=justPassThrough,
-        points={{-19,-60},{-1.5,-60},{-1.5,-60},{21,-60}},
         color={0,0,127},
         thickness=1));
   end if;

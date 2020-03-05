@@ -2,22 +2,16 @@ within CalibrationTemplates.InterfaceRouter;
 model PostProcessor
   extends BaseClasses.PartialProcessor;
 
-  parameter Integer nTargetsSimedTS(min=1) "Number of simulated target time series";
-  Interfaces.CalBusTargetSimed inTargetsSimed
+  Interfaces.CalBusTargetSimed calBusTargetsSimedIn
     annotation (Placement(transformation(extent={{-32,34},{-6,86}})));
-  Interfaces.CalBusTargetSimed outTargetsSimed
+  Interfaces.CalBusTargetSimed calBusTargetsSimedOut
     annotation (Placement(transformation(extent={{8,34},{34,86}})));
 equation
 
   if justPassThrough then
-    connect(inTargetsSimed, outTargetsSimed) annotation (Line(
+    connect(calBusTargetsSimedIn, calBusTargetsSimedOut) annotation (Line(
         visible=justPassThrough,
         points={{-19,60},{21,60}},
-        color={0,0,127},
-        thickness=1));
-    connect(inTargetsMeas, outTargetsMeas) annotation (Line(
-        visible=justPassThrough,
-        points={{-19,-60},{-1.5,-60},{-1.5,-60},{21,-60}},
         color={0,0,127},
         thickness=1));
   end if;
