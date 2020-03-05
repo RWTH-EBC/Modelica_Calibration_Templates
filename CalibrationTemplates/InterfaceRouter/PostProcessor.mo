@@ -3,8 +3,10 @@ model PostProcessor
   extends BaseClasses.PartialProcessor;
 
   parameter Integer nTargetsSimedTS(min=1) "Number of simulated target time series";
-  Interfaces.RealVectorInputs inTargetsSimed[nTargetsSimedTS] annotation (Placement(transformation(extent={{-32,34},{-6,86}})));
-  Interfaces.RealVectorOutputs outTargetsSimed[nTargetsSimedTS] annotation (Placement(transformation(extent={{8,34},{34,86}})));
+  Interfaces.CalBusTargetSimed inTargetsSimed
+    annotation (Placement(transformation(extent={{-32,34},{-6,86}})));
+  Interfaces.CalBusTargetSimed outTargetsSimed
+    annotation (Placement(transformation(extent={{8,34},{34,86}})));
 equation
 
   if justPassThrough then

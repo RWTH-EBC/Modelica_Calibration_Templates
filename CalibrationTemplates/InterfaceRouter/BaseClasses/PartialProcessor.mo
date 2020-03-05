@@ -4,8 +4,10 @@ partial model PartialProcessor
   parameter Integer nTargetsMeasTS(min=1) "Number of measured target time series";
   parameter Boolean justPassThrough=true "Set to false if calculations should be performed" annotation(Evaluate = true);
 
-  Interfaces.RealVectorInputs inTargetsMeas[nTargetsMeasTS] annotation (Placement(transformation(extent={{-32,-86},{-6,-34}})));
-  Interfaces.RealVectorOutputs outTargetsMeas[nTargetsMeasTS] annotation (Placement(transformation(extent={{8,-86},{34,-34}})));
+  Interfaces.CalBusTargetMeas inTargetsMeas
+    annotation (Placement(transformation(extent={{-32,-86},{-6,-34}})));
+  Interfaces.CalBusTargetMeas outTargetsMeas
+    annotation (Placement(transformation(extent={{8,-86},{34,-34}})));
 equation
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-20,-100},{20,100}}), graphics={

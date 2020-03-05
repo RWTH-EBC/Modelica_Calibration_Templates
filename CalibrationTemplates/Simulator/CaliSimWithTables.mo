@@ -28,14 +28,20 @@ model CaliSimWithTables
     tableName="inputsMeasured",
     fileName=fNameInputsMeas,
     columns=2:nInputsMeasTS + 1,
-    extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint) annotation (Placement(transformation(extent={{-100,40},{-80,60}})));
+    extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint) annotation (Placement(transformation(extent={{-160,40},
+            {-140,60}})));
   Modelica.Blocks.Sources.CombiTimeTable tableTargetsMeas(
     tableOnFile=true,
     tableName="targetsMeasured",
     fileName=fNameTargetsMeas,
     columns=2:nTargetsMeasTS + 1,
-    extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint) annotation (Placement(transformation(extent={{-100,-60},{-80,-40}})));
+    extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint) annotation (Placement(transformation(extent={{-160,
+            -60},{-140,-40}})));
 
+  Interfaces.CalBusInput calBusInput
+    annotation (Placement(transformation(extent={{-108,36},{-88,58}})));
+  Interfaces.CalBusTargetMeas calBusTargetMeas
+    annotation (Placement(transformation(extent={{-110,-58},{-90,-38}})));
 initial equation
   for i in 1:size(inputNames, 1) loop
     assert(Modelica.Utilities.Strings.isEqual(inputNames[i], headersInputsMeas[i]), "Names of measured inputs defined in Modelica must equal headers in read in file.\n
@@ -49,6 +55,16 @@ initial equation
 equation
 
 
-  connect(tableInputsMeas.y, preProcessor.inInputsMeas) annotation (Line(points={{-79,50},{-74,50},{-74,48},{-67.6,48}}, color={0,0,127}));
-  connect(tableTargetsMeas.y, preProcessor.inTargetsMeas) annotation (Line(points={{-79,-50},{-74,-50},{-74,-48},{-67.6,-48}}, color={0,0,127}));
+  connect(preProcessor.inTargetsMeas, calBusTargetMeas) annotation (Line(
+      points={{-67.6,-48},{-100,-48}},
+      color={255,204,51},
+      thickness=0.5,
+      smooth=Smooth.Bezier));
+  connect(preProcessor.inInputsMeas, calBusInput) annotation (Line(
+      points={{-67.6,48},{-77.8,48},{-77.8,47},{-98,47}},
+      color={255,204,51},
+      thickness=0.5,
+      smooth=Smooth.Bezier));
+  annotation (Diagram(coordinateSystem(extent={{-160,-100},{100,100}})), Icon(
+        coordinateSystem(extent={{-160,-100},{100,100}})));
 end CaliSimWithTables;

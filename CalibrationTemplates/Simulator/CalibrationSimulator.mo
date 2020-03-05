@@ -2,10 +2,6 @@ within CalibrationTemplates.Simulator;
 model CalibrationSimulator
   extends Modelica.Icons.Example;
 
-  parameter Integer nTargetsMeasTS(min=1) "Number of measured target time series" annotation(Dialog(group="Number in- and outputs"));
-  parameter Integer nTargetsSimedTS(min=1) "Number of simulated target time series" annotation(Dialog(group="Number in- and outputs"));
-  parameter Integer nInputsMeasTS(min=1) "Number of measured input time series" annotation(Dialog(group="Number in- and outputs"));
-
   /////////////////////////////////
   // TUNER PARAMETERS /////////////
   /////////////////////////////////
@@ -27,15 +23,34 @@ model CalibrationSimulator
   InterfaceRouter.PostProcessor postProcessor(nTargetsMeasTS=nTargetsMeasTS, nTargetsSimedTS=nTargetsSimedTS) constrainedby
     InterfaceRouter.PostProcessor(                                                                                                                        nTargetsMeasTS=nTargetsMeasTS, nTargetsSimedTS=nTargetsSimedTS)
                                               annotation (Placement(transformation(extent={{52,-80},{70,80}})), choicesAllMatching=true);
-  Interfaces.RealVectorOutputs outTargetsMeas[nTargetsMeasTS] annotation (Placement(transformation(extent={{88,-86},{114,-34}})));
-  Interfaces.RealVectorOutputs outTargetsSimed[nTargetsSimedTS] annotation (Placement(transformation(extent={{88,34},{114,86}})));
+  Interfaces.CalBusTargetMeas  outTargetsMeas[nTargetsMeasTS] annotation (Placement(transformation(extent={{88,-86},{114,-34}})));
+  Interfaces.CalBusTargetSimed outTargetsSimed[nTargetsSimedTS] annotation (Placement(transformation(extent={{88,34},{114,86}})));
 equation
-  connect(preProcessor.outInputsMeas, modelContainer.inInputsMeas) annotation (Line(points={{-51.6,48},{-42,48},{-42,54.8},{-29.7,54.8}}, color={0,0,127}));
+  connect(preProcessor.outInputsMeas,modelContainer.calBusInputs)  annotation (Line(points={{-51.6,
+          48},{-42,48},{-42,52.16},{-29.7,52.16}},                                                                                        color={0,0,127}));
   connect(preProcessor.outTargetsMeas, modelContainer.inTargetsMeas) annotation (Line(points={{-51.6,-48},{-40,-48},{-40,15.2},{-29.7,15.2}}, color={0,0,127}));
-  connect(preProcessor.outTargetsMeas, postProcessor.inTargetsMeas) annotation (Line(points={{-51.6,-48},{1.2,-48},{1.2,-48},{52.45,-48}}, color={0,0,127}));
-  connect(postProcessor.outTargetsSimed, outTargetsSimed) annotation (Line(points={{70.45,48},{84,48},{84,60},{101,60}}, color={0,0,127}));
-  connect(postProcessor.outTargetsMeas, outTargetsMeas) annotation (Line(points={{70.45,-48},{88,-48},{88,-60},{101,-60}}, color={0,0,127}));
-  connect(modelContainer.outTargetsSimed, postProcessor.inTargetsSimed) annotation (Line(points={{30.3,35},{42.15,35},{42.15,48},{52.45,48}}, color={0,0,127}));
+  connect(postProcessor.outTargetsMeas, outTargetsMeas) annotation (Line(
+      points={{70.45,-48},{82,-48},{82,-60},{101,-60}},
+      color={255,204,51},
+      thickness=0.5,
+      smooth=Smooth.Bezier));
+  connect(postProcessor.inTargetsMeas, preProcessor.outTargetsMeas) annotation (
+     Line(
+      points={{52.45,-48},{2,-48},{2,-48},{-51.6,-48}},
+      color={255,204,51},
+      thickness=0.5,
+      smooth=Smooth.Bezier));
+  connect(postProcessor.outTargetsSimed, outTargetsSimed) annotation (Line(
+      points={{70.45,48},{88,48},{88,60},{101,60}},
+      color={255,204,51},
+      thickness=0.5,
+      smooth=Smooth.Bezier));
+  connect(modelContainer.calBusTargetSimed, postProcessor.inTargetsSimed)
+    annotation (Line(
+      points={{29.7,35},{39.85,35},{39.85,48},{52.45,48}},
+      color={255,204,51},
+      thickness=0.5,
+      smooth=Smooth.Bezier));
   annotation (Diagram(graphics={Text(
           extent={{-32,0},{32,-62}},
           lineColor={238,46,47},

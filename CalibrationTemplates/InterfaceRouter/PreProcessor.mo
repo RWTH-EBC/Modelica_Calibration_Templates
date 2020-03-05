@@ -3,8 +3,10 @@ model PreProcessor
   extends BaseClasses.PartialProcessor;
 
   parameter Integer nInputsMeasTS(min=1) "Number of measured input time series";
-  Interfaces.RealVectorInputs inInputsMeas[nInputsMeasTS] annotation (Placement(transformation(extent={{-32,34},{-6,86}})));
-  Interfaces.RealVectorOutputs outInputsMeas[nInputsMeasTS] annotation (Placement(transformation(extent={{8,34},{34,86}})));
+  Interfaces.CalBusInput inInputsMeas
+    annotation (Placement(transformation(extent={{-32,34},{-6,86}})));
+  Interfaces.CalBusInput outInputsMeas
+    annotation (Placement(transformation(extent={{8,34},{34,86}})));
 equation
 
   if justPassThrough then
