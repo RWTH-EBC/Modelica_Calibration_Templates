@@ -24,7 +24,8 @@ partial model AixCaliBuHaSim
     tableOnFile=true,
     tableName="inputsMeasured",
     fileName=fNameInputsMeas,
-    columns=2:nInputsMeasTS + 1,
+    columns=CalibrationTemplates.Functions.getColumnsMatchingString(headerSplittet=headersInputsMeas,
+    inputNames=inputNames) .+ 1,
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint) annotation (Placement(transformation(extent={{-108,
             -26},{-80,2}})));
  Interfaces.sigBusCalibration outTargetsSimed
@@ -42,11 +43,11 @@ protected
 
 
 
-initial equation
-  for i in 1:size(inputNames, 1) loop
-    assert(Modelica.Utilities.Strings.isEqual(inputNames[i], headersInputsMeas[i]), "Names of measured inputs defined in Modelica must equal headers in read in file.\n
-      But names are "+inputNames[i]+" in Modelica and "+headersInputsMeas[i]+" in the table file.", AssertionLevel.error);
-  end for;
+//initial equation
+  //for i in 1:size(inputNames, 1) loop
+  //  assert(Modelica.Utilities.Strings.isEqual(inputNames[i], headersInputsMeas[i]), "Names of measured inputs defined in Modelica must equal headers in read in file.\n
+  //    But names are "+inputNames[i]+" in Modelica and "+headersInputsMeas[i]+" in the table file.", AssertionLevel.error);
+  //end for;
 equation
   connect(modelContainer.outTargetsSimed, outTargetsSimed) annotation (Line(
       points={{37.72,4},{102,4}},
