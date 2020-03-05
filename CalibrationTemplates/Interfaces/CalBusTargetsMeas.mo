@@ -1,6 +1,6 @@
 within CalibrationTemplates.Interfaces;
-expandable connector CalBusTargetSimed
-  "Bus-Connector for target values simulated"
+expandable connector CalBusTargetsMeas
+  "Bus-Connector for target values measured"
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={Text(
           extent={{-70,92},{64,62}},
@@ -11,7 +11,7 @@ expandable connector CalBusTargetSimed
             lineThickness=0.5,
             extent={{-20.0,-2.0},{20.0,2.0}}),
           Polygon(
-            fillColor={255,255,255},
+            fillColor={255,255,0},
             fillPattern=FillPattern.Solid,
             points={{-80.0,50.0},{80.0,50.0},{100.0,30.0},{80.0,-40.0},{60.0,-50.0},{-60.0,-50.0},{-80.0,-40.0},{-100.0,30.0}},
             smooth=Smooth.Bezier,
@@ -32,4 +32,4 @@ expandable connector CalBusTargetSimed
             fillPattern=FillPattern.Solid,
             extent={{25.0,-25.0},{35.0,-15.0}})}),               Diagram(
         coordinateSystem(preserveAspectRatio=false)));
-end CalBusTargetSimed;
+end CalBusTargetsMeas;

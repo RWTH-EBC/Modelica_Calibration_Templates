@@ -1,20 +1,24 @@
 within CalibrationTemplates.Simulator;
-partial model PartialCalibrationSimulatorModelica
-  extends CalibrationTemplates.Simulator.PartialCalibrationSimulator;
+partial model CalibrationSimulator
+  extends
+    CalibrationTemplates.Simulator.BaseClasses.PartialCalibrationSimulator;
 
   parameter String targetNames[:]={"dummyTarget"} "Necessary to check if variables exist in given file for CombiTimeTable" annotation(Dialog(group="File Input"));
   parameter String fNameTargetsMeas = Modelica.Utilities.Files.loadResource("modelica://LibName/../../ts_data/file_inputsMeas_manipulated.txt")  annotation(Dialog(group="File Input"));
 
-  replaceable CalibrationTemplates.Interfaces.CalBusTargetMeas calBusTargetMeas
-  constrainedby CalibrationTemplates.Interfaces.CalBusTargetMeas
-                                                         annotation (Dialog(group="Bus Connectors"), choicesAllMatching=true, Placement(transformation(extent={{-138,
-            -58},{-122,-42}})));
+  replaceable CalibrationTemplates.Interfaces.CalBusTargetsMeas
+    calBusTargetMeas constrainedby
+    CalibrationTemplates.Interfaces.CalBusTargetsMeas annotation (
+    Dialog(group="Bus Connectors"),
+    choicesAllMatching=true,
+    Placement(transformation(extent={{-138,-58},{-122,-42}})));
 
   Modelica.Blocks.Sources.CombiTimeTable tableTargetsMeas(
     tableOnFile=true,
     tableName="targetsMeasured",
     fileName=fNameTargetsMeas,
-    columns=CalibrationTemplates.Functions.getColumnsMatchingString(headerSplittet=headersTargetsMeas,
+    columns=CalibrationTemplates.Functions.getColumnsMatchingString(
+        headerSplitted =                                                           headersTargetsMeas,
     inputNames=targetNames) .+ 1,
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint) annotation (Placement(transformation(extent={{-180,
             -60},{-160,-40}})));
@@ -27,19 +31,18 @@ partial model PartialCalibrationSimulatorModelica
   InterfaceRouter.PostProcessor postProcessor                                                                 constrainedby
     InterfaceRouter.PostProcessor             annotation (Placement(transformation(extent={{52,-76},
             {84,84}})),                                                                                         choicesAllMatching=true);
-  Interfaces.CalBusTargetMeas calBusTargetMeasOut
+  Interfaces.CalBusTargetsMeas calBusTargetMeasOut
     annotation (Placement(transformation(extent={{148,-64},{168,-36}})));
 protected
   parameter String headerLineTargetsMeas = Modelica.Utilities.Streams.readLine(
     Modelica.Utilities.Files.fullPathName(fNameTargetsMeas), lineWithHeaders);
   parameter Integer nSizeTargets=Modelica.Utilities.Strings.count(string=headerLineTargetsMeas,
-                                                          searchString=delimiter, startIndex=startIndex);
-  parameter String headersTargetsMeas[nSizeTargets]=Functions.splitString(
+                                                          searchString=delimiter, startIndex=startIndex-1);
+  parameter String headersTargetsMeas[nSizeTargets]=CalibrationTemplates.Functions.splitString(
       theString=headerLineTargetsMeas,
       delimiter=delimiter,
       startIndex=startIndex,
       nSize=nSizeTargets) annotation(Dialog(group="Advanced Settings"));
-
 equation
 
   connect(postProcessor.calBusTargetsSimedOut, calBusTargetSimed) annotation (
@@ -57,12 +60,6 @@ equation
       points={{-55.3,-44},{-6,-44},{-6,-44},{52.8,-44}},
       color={255,204,51},
       thickness=0.5));
-  connect(preProcessor.calBusTargetsMeasOut, modelContainer.calBusTargetMeas)
-    annotation (Line(
-      points={{-55.3,-44},{-46,-44},{-46,-34},{-42,-34},{-42,-15.58},{-24.25,
-          -15.58}},
-      color={255,204,51},
-      thickness=0.5));
   connect(calBusTargetMeas, preProcessor.calBusTargetsMeasIn) annotation (Line(
       points={{-130,-50},{-106,-50},{-106,-44},{-83.3,-44}},
       color={255,204,51},
@@ -71,9 +68,9 @@ equation
       points={{-129,71},{-106,71},{-106,52},{-83.3,52}},
       color={255,204,51},
       thickness=0.5));
-  connect(preProcessor.calBusInputsOut, modelContainer.calBusInput) annotation
-    (Line(
-      points={{-55.3,52},{-38,52},{-38,13.04},{-23.75,13.04}},
+  connect(preProcessor.calBusInputsOut, modelContainer.calBusInput) annotation (
+     Line(
+      points={{-55.3,52},{-38,52},{-38,-1},{-24.25,-1}},
       color={255,204,51},
       thickness=0.5));
   connect(postProcessor.calBusTargetsMeasOut, calBusTargetMeasOut) annotation (
@@ -83,16 +80,7 @@ equation
       thickness=0.5));
   annotation (Icon(coordinateSystem(preserveAspectRatio=false, extent={{-160,-100},
             {160,120}})),                                        Diagram(coordinateSystem(preserveAspectRatio=false, extent={
-            {-160,-100},{160,120}}), graphics={
-                                Text(
-          extent={{-30,92},{34,30}},
-          lineColor={238,46,47},
-          lineThickness=1,
-          fillColor={215,215,215},
-          fillPattern=FillPattern.Solid,
-          textString="Tuner Parameters
-go inside the
-source code")}),
+            {-160,-100},{160,120}})),
               Diagram(coordinateSystem(extent={{-160,-120},{160,120}})), Icon(
         coordinateSystem(extent={{-160,-120},{160,120}})));
-end PartialCalibrationSimulatorModelica;
+end CalibrationSimulator;

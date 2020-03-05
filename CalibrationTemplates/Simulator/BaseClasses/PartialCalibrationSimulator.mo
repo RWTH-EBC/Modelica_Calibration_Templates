@@ -1,4 +1,4 @@
-within CalibrationTemplates.Simulator;
+within CalibrationTemplates.Simulator.BaseClasses;
 partial model PartialCalibrationSimulator
   extends Modelica.Icons.Example;
 
@@ -18,19 +18,23 @@ partial model PartialCalibrationSimulator
   parameter Integer startIndex=Modelica.Utilities.Strings.length("#time_in_s") + 2 annotation(Dialog(group="File Input - Advanced Settings"));
   parameter String delimiter="\t" annotation(Dialog(group="File Input - Advanced Settings"));
 
-  replaceable CalibrationTemplates.Interfaces.CalBusInput calBusInput constrainedby
-    CalibrationTemplates.Interfaces.CalBusInput
-    annotation (Dialog(group="Bus Connectors"), choicesAllMatching=true, Placement(transformation(extent={{-136,64},
-            {-122,78}})));
-  replaceable CalibrationTemplates.Interfaces.CalBusTargetSimed calBusTargetSimed constrainedby
-    CalibrationTemplates.Interfaces.CalBusTargetSimed
-    annotation (Dialog(group="Bus Connectors"), choicesAllMatching=true, Placement(transformation(extent={{150,62},
-            {166,78}})));
+  replaceable CalibrationTemplates.Interfaces.CalBusInputs calBusInput
+    constrainedby CalibrationTemplates.Interfaces.CalBusInputs annotation (
+    Dialog(group="Bus Connectors"),
+    choicesAllMatching=true,
+    Placement(transformation(extent={{-136,64},{-122,78}})));
+  replaceable CalibrationTemplates.Interfaces.CalBusTargetsSimed
+    calBusTargetSimed constrainedby
+    CalibrationTemplates.Interfaces.CalBusTargetsSimed annotation (
+    Dialog(group="Bus Connectors"),
+    choicesAllMatching=true,
+    Placement(transformation(extent={{150,62},{166,78}})));
   Modelica.Blocks.Sources.CombiTimeTable tableInputsMeas(
     tableOnFile=true,
     tableName="inputsMeasured",
     fileName=fNameInputsMeas,
-    columns=CalibrationTemplates.Functions.getColumnsMatchingString(headerSplittet=headersInputsMeas,
+    columns=CalibrationTemplates.Functions.getColumnsMatchingString(
+        headerSplitted =                                                           headersInputsMeas,
     inputNames=inputNames) .+ 1,
     extrapolation=Modelica.Blocks.Types.Extrapolation.HoldLastPoint) annotation (Placement(transformation(extent={{-180,60},
             {-160,80}})));
@@ -39,8 +43,8 @@ protected
   parameter String headerLineInputsMeas = Modelica.Utilities.Streams.readLine(
     Modelica.Utilities.Files.fullPathName(fNameInputsMeas), lineWithHeaders);
   parameter Integer nSizeInputs=Modelica.Utilities.Strings.count(string=headerLineInputsMeas,
-                                                          searchString=delimiter, startIndex=startIndex);
-  parameter String headersInputsMeas[nSizeInputs]=Functions.splitString(
+                                                          searchString=delimiter, startIndex=startIndex-1);
+  parameter String headersInputsMeas[nSizeInputs]=CalibrationTemplates.Functions.splitString(
       theString=headerLineInputsMeas,
       delimiter=delimiter,
       startIndex=startIndex,

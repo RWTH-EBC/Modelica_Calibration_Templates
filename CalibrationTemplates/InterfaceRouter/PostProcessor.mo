@@ -2,9 +2,9 @@ within CalibrationTemplates.InterfaceRouter;
 model PostProcessor
   extends BaseClasses.PartialProcessor;
 
-  Interfaces.CalBusTargetSimed calBusTargetsSimedIn
+  Interfaces.CalBusTargetsSimed calBusTargetsSimedIn
     annotation (Placement(transformation(extent={{-32,34},{-6,86}})));
-  Interfaces.CalBusTargetSimed calBusTargetsSimedOut
+  Interfaces.CalBusTargetsSimed calBusTargetsSimedOut
     annotation (Placement(transformation(extent={{8,34},{34,86}})));
 equation
 

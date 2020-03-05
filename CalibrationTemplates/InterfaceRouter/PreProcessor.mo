@@ -2,9 +2,9 @@ within CalibrationTemplates.InterfaceRouter;
 model PreProcessor
   extends BaseClasses.PartialProcessor;
 
-  Interfaces.CalBusInput calBusInputsIn
+  Interfaces.CalBusInputs calBusInputsIn
     annotation (Placement(transformation(extent={{-32,34},{-6,86}})));
-  Interfaces.CalBusInput calBusInputsOut
+  Interfaces.CalBusInputs calBusInputsOut
     annotation (Placement(transformation(extent={{8,34},{34,86}})));
 equation
 

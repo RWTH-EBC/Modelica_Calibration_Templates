@@ -3,9 +3,9 @@ partial model PartialProcessor
 
   parameter Boolean justPassThrough=true "Set to false if calculations should be performed" annotation(Evaluate = true);
 
-  Interfaces.CalBusTargetMeas calBusTargetsMeasIn
+  Interfaces.CalBusTargetsMeas calBusTargetsMeasIn
     annotation (Placement(transformation(extent={{-32,-86},{-6,-34}})));
-  Interfaces.CalBusTargetMeas calBusTargetsMeasOut
+  Interfaces.CalBusTargetsMeas calBusTargetsMeasOut
     annotation (Placement(transformation(extent={{8,-86},{34,-34}})));
 equation
   if justPassThrough then

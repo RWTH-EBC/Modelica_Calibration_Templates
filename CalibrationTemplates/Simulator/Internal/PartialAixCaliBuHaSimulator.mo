@@ -1,6 +1,7 @@
-within CalibrationTemplates.Simulator;
+within CalibrationTemplates.Simulator.Internal;
 partial model PartialAixCaliBuHaSimulator
-  extends CalibrationTemplates.Simulator.PartialCalibrationSimulator;
+  extends
+    CalibrationTemplates.Simulator.BaseClasses.PartialCalibrationSimulator;
 
 equation
 
@@ -9,7 +10,7 @@ equation
       color={255,204,51},
       thickness=0.5));
   connect(calBusInput, modelContainer.calBusInput) annotation (Line(
-      points={{-129,71},{-92,71},{-92,13.04},{-23.75,13.04}},
+      points={{-129,71},{-92,71},{-92,-1},{-24.25,-1}},
       color={255,204,51},
       thickness=0.5));
 end PartialAixCaliBuHaSimulator;
