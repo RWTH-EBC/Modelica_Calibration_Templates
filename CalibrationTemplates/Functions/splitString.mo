@@ -3,28 +3,26 @@ function splitString
   input String theString;
   input String delimiter = "\t";
   input Integer startIndex = 1;
-  input Integer nStringArray(min=1);
-  output String strArray[nStringArray];
+  input Integer nSize;
+  output String strArray[nSize];
 
 protected
-  Integer lastDelIndex;
   Integer currIndex;
   Integer counter;
   Integer nextIndex;
 
 algorithm
 
-  lastDelIndex :=Modelica.Utilities.Strings.findLast(theString, delimiter);
   currIndex := startIndex;
   counter :=1;
   nextIndex :=0;
 
-  while currIndex < lastDelIndex loop
+  while counter < nSize loop
     nextIndex :=Modelica.Utilities.Strings.find(
         theString,
         delimiter,
         currIndex);
-    strArray[counter] :=Modelica.Utilities.Strings.substring(
+    strArray[counter] := Modelica.Utilities.Strings.substring(
         theString,
         currIndex,
         nextIndex - 1);
@@ -32,7 +30,7 @@ algorithm
     counter := counter + 1;
   end while;
 
-  strArray[nStringArray] :=Modelica.Utilities.Strings.substring(
+  strArray[nSize] := Modelica.Utilities.Strings.substring(
       theString,
       currIndex,
       Modelica.Utilities.Strings.length(theString));
