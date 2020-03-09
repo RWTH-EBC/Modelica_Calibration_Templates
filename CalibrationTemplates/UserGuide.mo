@@ -1,4 +1,4 @@
-within CalibrationTemplates.Simulator;
+within CalibrationTemplates;
 class UserGuide "User's Guide"
   extends Modelica.Icons.Information;
 
