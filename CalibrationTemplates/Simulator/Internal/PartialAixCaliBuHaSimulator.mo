@@ -1,5 +1,5 @@
 within CalibrationTemplates.Simulator.Internal;
-partial model PartialAixCaliBuHaSimulator
+partial model PartialAixCaliBuHaSimulator "Used by the AixCaliBuHa-Framework only"
   extends
     CalibrationTemplates.Simulator.BaseClasses.PartialCalibrationSimulator;
 

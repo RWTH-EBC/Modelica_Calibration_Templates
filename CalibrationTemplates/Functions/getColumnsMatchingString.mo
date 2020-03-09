@@ -1,5 +1,5 @@
 within CalibrationTemplates.Functions;
-function getColumnsMatchingString
+function getColumnsMatchingString "Return the location of each string in inputNames in the array headerSplitted as an array"
   input String headerSplitted[:];
   input String inputNames[:];
   output Integer columns[size(inputNames, 1)];

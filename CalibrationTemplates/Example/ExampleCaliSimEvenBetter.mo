@@ -10,7 +10,7 @@ model ExampleCaliSimEvenBetter
     targetNames={"THCFlo_K"},
     fNameInputsMeas=Modelica.Utilities.Files.loadResource("modelica://CalibrationTemplates//Resources//Example_Data//time_series_data_20170613_inputsMeas_manipulated.txt"),
     inputNames={"TEva_degC","THCRet_K"},
-    redeclare ExampleTunerParas tunerParameters,
+    redeclare Database.ExampleTunerParas tunerParameters,
     redeclare AdaptedModelToCalibrate_useExtend modelContainer(
       redeclare ExampleBusDefintion.ExampleCalBusTargetsSimed calBusTargetSimed,
       redeclare ExampleBusDefintion.ExampleCalBusInputs calBusInput,

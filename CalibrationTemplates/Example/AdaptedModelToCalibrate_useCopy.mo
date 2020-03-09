@@ -1,6 +1,5 @@
 within CalibrationTemplates.Example;
-model CopiedAdaptedModelToCalibrate_useCopy
-  "Example model used for calibration"
+model AdaptedModelToCalibrate_useCopy "Example model used for calibration"
   extends CalibrationTemplates.Container.ModelContainer;
 
   Modelica.Blocks.Math.Gain gain(k=k)
@@ -26,4 +25,4 @@ equation
           fillPattern=FillPattern.Solid,
           textStyle={TextStyle.Bold},
           textString="NOTE: This is only to show an example, the model itself makes no sense")}));
-end CopiedAdaptedModelToCalibrate_useCopy;
+end AdaptedModelToCalibrate_useCopy;

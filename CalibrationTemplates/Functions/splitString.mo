@@ -1,5 +1,5 @@
 within CalibrationTemplates.Functions;
-function splitString
+function splitString "Split a given string based on a delimiter"
   input String theString;
   input String delimiter = "\t";
   input Integer startIndex = 1;

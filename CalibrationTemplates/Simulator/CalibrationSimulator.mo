@@ -4,11 +4,11 @@ partial model CalibrationSimulator
     CalibrationTemplates.Simulator.BaseClasses.PartialCalibrationSimulator;
 
   parameter String targetNames[:]={"dummyTarget"} "Necessary to check if variables exist in given file for CombiTimeTable" annotation(Dialog(group="File Input"));
-  parameter String fNameTargetsMeas = Modelica.Utilities.Files.loadResource("modelica://LibName/../../ts_data/file_inputsMeas_manipulated.txt")  annotation(Dialog(group="File Input"));
+  parameter String fNameTargetsMeas = Modelica.Utilities.Files.loadResource("modelica://LibName/../../ts_data/file_inputsMeas_manipulated.txt") "Specify the file-name for the target values measured"  annotation(Dialog(group="File Input"));
 
   replaceable CalibrationTemplates.Interfaces.CalBusTargetsMeas
     calBusTargetMeas constrainedby
-    CalibrationTemplates.Interfaces.CalBusTargetsMeas annotation (
+    CalibrationTemplates.Interfaces.CalBusTargetsMeas "Replacable connector for measured Target Values (outputs)" annotation (
     Dialog(group="Bus Connectors"),
     choicesAllMatching=true,
     Placement(transformation(extent={{-138,-58},{-122,-42}})));
@@ -25,11 +25,11 @@ partial model CalibrationSimulator
 
   replaceable
   InterfaceRouter.PreProcessor preProcessor                                                             constrainedby
-    InterfaceRouter.PreProcessor            annotation (Placement(transformation(extent={{-84,-76},
+    InterfaceRouter.PreProcessor "Replace with your own preprocessing"           annotation (Dialog(group="Processing"), Placement(transformation(extent={{-84,-76},
             {-56,84}})),                                                                                        choicesAllMatching=true);
   replaceable
   InterfaceRouter.PostProcessor postProcessor                                                                 constrainedby
-    InterfaceRouter.PostProcessor             annotation (Placement(transformation(extent={{52,-76},
+    InterfaceRouter.PostProcessor "Replace with your own postprocessing"             annotation (Dialog(group="Processing"), Placement(transformation(extent={{52,-76},
             {84,84}})),                                                                                         choicesAllMatching=true);
   Interfaces.CalBusTargetsMeas calBusTargetMeasOut
     annotation (Placement(transformation(extent={{148,-64},{168,-36}})));
