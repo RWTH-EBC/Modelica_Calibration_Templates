@@ -1,4 +1,4 @@
 within CalibrationTemplates;
 package Functions
-  extends Modelica.Icons.FunctionsPackage;
+  extends Modelica.Icons.Package;
 end Functions;
