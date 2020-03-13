@@ -1,6 +1,6 @@
 within CalibrationTemplates.Interfaces;
 expandable connector CalBusTargetsSimed
-  "Bus-Connector for target values simulated"
+  "Bus connector for target values simulated"
 
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={Text(
           extent={{-70,92},{64,62}},

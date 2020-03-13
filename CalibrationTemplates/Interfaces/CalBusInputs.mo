@@ -1,5 +1,5 @@
 within CalibrationTemplates.Interfaces;
-expandable connector CalBusInputs "Bus-Connector for target values measured"
+expandable connector CalBusInputs "Bus connector for measured input values"
   annotation (Icon(coordinateSystem(preserveAspectRatio=false), graphics={Text(
           extent={{-70,92},{64,62}},
           lineColor={28,108,200},

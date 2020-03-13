@@ -1,6 +1,6 @@
 within CalibrationTemplates.Example;
 model AdaptedModelToCalibrate_useExtend
-  "Example model used for calibration"
+  "Example model: Extend method"
   extends CalibrationTemplates.Interfaces.Containers.ModelContainer;
   extends CalibrationTemplates.Example.ModelToCalibrate;
 equation

@@ -1,5 +1,6 @@
 within CalibrationTemplates.Example;
-model AdaptedModelToCalibrate_useCopy "Example model used for calibration"
+model AdaptedModelToCalibrate_useCopy
+  "Example model: Copy and paste method"
   extends CalibrationTemplates.Interfaces.Containers.ModelContainer;
 
   Modelica.Blocks.Math.Gain gain(k=k)
