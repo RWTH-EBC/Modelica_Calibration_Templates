@@ -1,6 +1,6 @@
 within CalibrationTemplates.Example;
 model ExampleCaliSimEvenBetter
-  extends CalibrationTemplates.Simulator.CalibrationSimulator(
+  extends CalibrationTemplates.SimulatorTemplate.CalibrationSimulator(
     redeclare ExampleBusDefintion.ExampleCalBusTargetsSimed calBusTargetSimed,
     redeclare ExampleBusDefintion.ExampleCalBusTargetsMeas calBusTargetMeas,
     redeclare ExampleBusDefintion.ExampleCalBusInputs calBusInput,

@@ -1,7 +1,6 @@
-within CalibrationTemplates.Simulator;
+within CalibrationTemplates.SimulatorTemplate;
 partial model CalibrationSimulator
-  extends
-    CalibrationTemplates.Simulator.BaseClasses.PartialCalibrationSimulator;
+  extends CalibrationTemplates.SimulatorTemplate.BaseClasses.PartialCalibrationSimulator;
 
   parameter String targetNames[:]={"dummyTarget"} "Necessary to check if variables exist in given file for CombiTimeTable" annotation(Dialog(group="File Input"));
   parameter String fNameTargetsMeas = Modelica.Utilities.Files.loadResource("modelica://LibName/../../ts_data/file_inputsMeas_manipulated.txt") "Specify the file-name for the target values measured"  annotation(Dialog(group="File Input"));

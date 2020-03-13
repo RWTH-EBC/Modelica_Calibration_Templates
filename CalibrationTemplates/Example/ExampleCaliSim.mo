@@ -1,6 +1,6 @@
 within CalibrationTemplates.Example;
 model ExampleCaliSim
-  extends CalibrationTemplates.Simulator.CalibrationSimulator(
+  extends CalibrationTemplates.SimulatorTemplate.CalibrationSimulator(
     redeclare InterfaceRouter.PostProcessor postProcessor,
     redeclare InterfaceRouter.PreProcessor preProcessor,
     fNameTargetsMeas=Modelica.Utilities.Files.loadResource("modelica://CalibrationTemplates//Resources//Example_Data//time_series_data_20170613_targetsMeas_manipulated.txt"),

@@ -1,4 +1,4 @@
-within CalibrationTemplates.Simulator.BaseClasses;
+within CalibrationTemplates.SimulatorTemplate.BaseClasses;
 partial model PartialCalibrationSimulator
   extends Modelica.Icons.Example;
 
