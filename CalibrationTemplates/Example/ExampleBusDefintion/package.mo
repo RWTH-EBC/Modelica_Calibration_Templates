@@ -1,3 +1,0 @@
-within CalibrationTemplates.Example;
-package ExampleBusDefintion
-end ExampleBusDefintion;
