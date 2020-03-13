@@ -1,7 +1,8 @@
 within CalibrationTemplates.Example;
 model AdaptedModelToCalibrate_useExtendAndCustomBus
   "Example model used for calibration"
-  extends CalibrationTemplates.Container.ModelContainer(redeclare
+  extends CalibrationTemplates.Interfaces.Containers.ModelContainer(
+                                                        redeclare
       ExampleBusDefintion.ExampleCalBusInputs calBusInput, redeclare
       ExampleBusDefintion.ExampleCalBusTargetsSimed calBusTargetSimed);
   extends CalibrationTemplates.Example.ModelToCalibrate;

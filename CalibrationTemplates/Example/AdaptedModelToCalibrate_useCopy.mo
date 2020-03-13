@@ -1,6 +1,6 @@
 within CalibrationTemplates.Example;
 model AdaptedModelToCalibrate_useCopy "Example model used for calibration"
-  extends CalibrationTemplates.Container.ModelContainer;
+  extends CalibrationTemplates.Interfaces.Containers.ModelContainer;
 
   Modelica.Blocks.Math.Gain gain(k=k)
     annotation (Placement(transformation(extent={{-48,46},{-20,74}})));

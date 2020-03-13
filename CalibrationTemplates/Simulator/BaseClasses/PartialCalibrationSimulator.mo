@@ -2,12 +2,12 @@ within CalibrationTemplates.Simulator.BaseClasses;
 partial model PartialCalibrationSimulator
   extends Modelica.Icons.Example;
 
-  replaceable CalibrationTemplates.Container.ModelContainer modelContainer constrainedby
-    CalibrationTemplates.Container.ModelContainer "Replace with your model"  annotation (Dialog(group="General"), choicesAllMatching=true, Placement(transformation(extent={{-24,-28},
-            {26,26}})));
+  replaceable CalibrationTemplates.Interfaces.Containers.ModelContainer modelContainer constrainedby CalibrationTemplates.Interfaces.Containers.ModelContainer "Replace with your model" annotation (
+    Dialog(group="General"),
+    choicesAllMatching=true,
+    Placement(transformation(extent={{-24,-28},{26,26}})));
   replaceable parameter CalibrationTemplates.Database.TunerParameterBaseDataDefinition
-    tunerParameters constrainedby
-    CalibrationTemplates.Database.TunerParameterBaseDataDefinition
+    tunerParameters constrainedby CalibrationTemplates.Database.TunerParameterBaseDataDefinition
     "Replace with your tuner-parameters record"
     annotation (Dialog(group="General"), Evaluate=false, choicesAllMatching=true, Placement(transformation(extent={{-18,82},
             {18,118}})));
@@ -26,8 +26,7 @@ partial model PartialCalibrationSimulator
     choicesAllMatching=true,
     Placement(transformation(extent={{-136,64},{-122,78}})));
   replaceable CalibrationTemplates.Interfaces.CalBusTargetsSimed
-    calBusTargetSimed constrainedby
-    CalibrationTemplates.Interfaces.CalBusTargetsSimed
+    calBusTargetSimed constrainedby CalibrationTemplates.Interfaces.CalBusTargetsSimed
     "Replacable connector for simulated Target Values (outputs)"
                                                        annotation (
     Dialog(group="Bus Connectors"),

@@ -1,7 +1,7 @@
 within CalibrationTemplates.Example;
 model AdaptedModelToCalibrate_useExtend
   "Example model used for calibration"
-  extends CalibrationTemplates.Container.ModelContainer;
+  extends CalibrationTemplates.Interfaces.Containers.ModelContainer;
   extends CalibrationTemplates.Example.ModelToCalibrate;
 equation
     connect(gain.y, add.u1) annotation (Line(points={{-18.6,60},{0,60},{0,36},{-20,
