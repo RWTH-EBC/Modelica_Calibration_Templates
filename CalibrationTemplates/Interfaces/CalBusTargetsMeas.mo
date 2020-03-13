@@ -11,7 +11,7 @@ expandable connector CalBusTargetsMeas
             lineThickness=0.5,
             extent={{-20.0,-2.0},{20.0,2.0}}),
           Polygon(
-            fillColor={255,255,0},
+            fillColor={170,255,85},
             fillPattern=FillPattern.Solid,
             points={{-80.0,50.0},{80.0,50.0},{100.0,30.0},{80.0,-40.0},{60.0,-50.0},{-60.0,-50.0},{-80.0,-40.0},{-100.0,30.0}},
             smooth=Smooth.Bezier,
