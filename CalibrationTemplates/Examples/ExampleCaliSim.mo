@@ -4,7 +4,7 @@ model ExampleCaliSim
     redeclare InterfaceRouters.PostProcessor postProcessor,
     redeclare InterfaceRouters.PreProcessor preProcessor,
     fNameTargetsMeas=Modelica.Utilities.Files.loadResource("modelica://CalibrationTemplates//Resources//Example_Data//time_series_data_20170613_targetsMeas_manipulated.txt"),
-    targetNames={"THCRet_K"},
+    targetNames={"THCFlo_K"},
     fNameInputsMeas=Modelica.Utilities.Files.loadResource("modelica://CalibrationTemplates//Resources//Example_Data//time_series_data_20170613_inputsMeas_manipulated.txt"),
     inputNames={"TEva_degC","THCRet_K"},
     redeclare ExampleDatabase.ExampleTunerParas tunerParameters,

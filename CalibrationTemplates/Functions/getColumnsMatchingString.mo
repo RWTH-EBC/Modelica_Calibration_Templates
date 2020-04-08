@@ -4,7 +4,7 @@ function getColumnsMatchingString "Return the location of each string in inputNa
   input String inputNames[:];
   output Integer columns[size(inputNames, 1)];
 algorithm
-  //Modelica.Utilities.Streams.print(String(columns));
+  //Modelica.Utilities.Streams.print(String(headerSplitted));
   for i in 1:size(inputNames, 1) loop
     for h in 1:size(headerSplitted, 1) loop
       // Check for matches in the list an append the index to the columns
@@ -15,7 +15,8 @@ algorithm
       end if;
     end for;
     // If the column is still empty, an error has to be raised.
-    assert(columns[i] > 0, "No match found for "+inputNames[i],  AssertionLevel.error);
+    assert(columns[i] > 0, "No match found for "+inputNames[i]+" in array "
+        + Modelica.Utilities.Strings.scanDelimiter.concatenate(headerSplitted),  AssertionLevel.error);
   end for;
 
 end getColumnsMatchingString;
