@@ -1,4 +1,4 @@
-# MoCaTe - Modelica Calibration Template
+# MoCaTe - Modelica Calibration Templates
 
-Used as a submodule in AixCaliBuHA and as stand alone solution for any Calibration tasks in Modelica.
+Useable as a submodule of [AixCaliBuHA](https://github.com/RWTH-EBC/AixCaliBuHA) or as stand-alone solution for any calibration tasks in Modelica.
 Provides common interfaces for calibration.
